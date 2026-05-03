@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './JokeData.css'
-
+//import { fetchRandomJokes } from "../../api/randomUser"
 const JokeData = () => {
     const [jokes, setJokes] = useState([])
     const [index, setIndex] = useState(0)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-
+   // console.log(import.meta.env.VITE_RANDOM_JOKES_API_URL)
     const fetchData = async () => {
         setLoading(true)
         setError(null)
+
         try {
-            const response = await fetch("/api/jokes")
+            const response = await fetch(import.meta.env.VITE_RANDOM_JOKES_API_URL
+)
+            
         if (!response.ok) {
             console.log("Status:", response.status)
             throw new Error("API request failed")
