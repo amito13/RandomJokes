@@ -11,7 +11,13 @@ const JokeData = () => {
         setLoading(true)
         setError(null)
         try {
-            const response = await fetch('https://api.freeapi.app/api/v1/public/randomjokes')
+            const response = await fetch("https://api.freeapi.app/api/v1/public/randomjokes", {
+    method: "GET",
+  })
+        if (!response.ok) {
+            console.log("Status:", response.status)
+            throw new Error("API request failed")
+            }
             const result = await response.json()
             const data = result?.data?.data || []
             setJokes(data)
